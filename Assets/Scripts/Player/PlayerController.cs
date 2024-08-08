@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Animator animator;
+    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private BoxCollider2D boxCol;
 
-    private void Awake()
+    private Vector2 boxColInitSize;
+    private Vector2 boxColInitOffset;
+
+    private void Start()
     {
-        Debug.Log("Player Controller Awake.");
+        boxColInitSize = boxCol.size;
+        boxColInitOffset = boxCol.offset;
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    Debug.Log("Collision: "+ collision.gameObject.name);
-    //}
-
-    private void Update()
+    public void Update()
     {
         float speed = Input.GetAxisRaw("Horizontal");
-        animator.SetFloat("Speed", Mathf.Abs(speed));
+        playerAnimator.SetFloat("Speed", Mathf.Abs(speed));
+
 
         Vector3 scale = transform.localScale;
         if (speed < 0f)
@@ -32,34 +33,49 @@ public class PlayerController : MonoBehaviour
         }
         transform.localScale = scale;
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            animator.SetBool("Crouch", true);
-        }
+
+        float VerticalInput = Input.GetAxis("Vertical");
+
+        PlayJumpAnimation(VerticalInput);
+
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            animator.SetBool("Crouch", true);
+            Crouch(true);
         }
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        else
         {
-            animator.SetBool("Crouch", false);
+            Crouch(false);
         }
+    }
 
-        float jump_vertical = Input.GetAxisRaw("Vertical");
-        Vector3 position = transform.position;
-
-        if (jump_vertical > 0f)
+    public void Crouch(bool crouch)
+    {
+        if (crouch == true)
         {
-            animator.SetBool("Jump", true);
+            float offX = -0.1581616f;
+            float offY = 0.6157525f;
+
+            float sizeX = 0.7675232f;
+            float sizeY = 1.275061f;
+
+            boxCol.size = new Vector2(sizeX, sizeY);
+            boxCol.offset = new Vector2(offX, offY);
         }
-        if (jump_vertical <= 0f) 
+
+        else
         {
-            jump_vertical = 0f;
-            animator.SetBool("Jump", false);
+            boxCol.size = boxColInitSize;
+            boxCol.offset = boxColInitOffset;
         }
-        transform.localPosition = position;
 
+        playerAnimator.SetBool("Crouch", crouch);
+    }
 
-
+    public void PlayJumpAnimation(float vertical)
+    {
+        if (vertical > 0)
+        {
+            playerAnimator.SetTrigger("Jump");
+        }
     }
 }
