@@ -4,24 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] 
-    private Animator playerAnimator;
-
-    [SerializeField] 
-    private BoxCollider2D boxCol;
-
-
-    [SerializeField]
-    private float playerHorizontalSpeed;
+    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private Rigidbody2D playerRigidbody2d;
+    [SerializeField] private BoxCollider2D boxCol;
+    [SerializeField] private float playerHorizontalSpeed;
+    [SerializeField] private float playerVerticalJumpHeight;
 
     private Vector2 boxColInitSize;
     private Vector2 boxColInitOffset;
 
+    private bool isGrounded;
 
     private void Start()
     {
         boxColInitSize = boxCol.size;
         boxColInitOffset = boxCol.offset;
+
     }
 
     public void Update()
@@ -39,6 +37,11 @@ public class PlayerController : MonoBehaviour
         currentPosition.x += horizontalInput * playerHorizontalSpeed * Time.deltaTime;
         transform.position = currentPosition;
 
+        if (verticalInput > 0 && isGrounded)
+        {
+            playerRigidbody2d.AddForce(new Vector2(0f, playerVerticalJumpHeight), ForceMode2D.Force);
+            PlayJumpAnimation();
+        }
 
     }
 
@@ -58,12 +61,6 @@ public class PlayerController : MonoBehaviour
 
         transform.localScale = scale;
 
-        if (verticalInput > 0)
-        {
-            PlayJumpAnimation();
-        }
-
-
         if (Input.GetKey(KeyCode.LeftControl))
         {
             PlayCrouchAnimation(true);
@@ -79,11 +76,11 @@ public class PlayerController : MonoBehaviour
     {
         if (crouchValue == true)
         {
-            float offX = -0.1581616f;
-            float offY = 0.6157525f;
+            float offX = -0.158f;
+            float offY = 0.615f;
 
-            float sizeX = 0.7675232f;
-            float sizeY = 1.275061f;
+            float sizeX = 0.767f;
+            float sizeY = 1.275f;
 
             boxCol.size = new Vector2(sizeX, sizeY);
             boxCol.offset = new Vector2(offX, offY);
@@ -100,6 +97,24 @@ public class PlayerController : MonoBehaviour
 
     public void PlayJumpAnimation()
     {
+        Debug.Log("Playing Jump Animation");
         playerAnimator.SetTrigger("Jump");
     }
+
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Platform"))
+        {
+            isGrounded = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            isGrounded = false;
+        }
+    }
+
 }
