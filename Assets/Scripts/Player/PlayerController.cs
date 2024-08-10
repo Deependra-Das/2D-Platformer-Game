@@ -5,25 +5,52 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Animator playerAnimator;
+    [SerializeField] private Rigidbody2D playerRigidbody2d;
     [SerializeField] private BoxCollider2D boxCol;
+    [SerializeField] private float playerHorizontalSpeed;
+    [SerializeField] private float playerVerticalJumpHeight;
 
     private Vector2 boxColInitSize;
     private Vector2 boxColInitOffset;
+
+    private bool isGrounded;
 
     private void Start()
     {
         boxColInitSize = boxCol.size;
         boxColInitOffset = boxCol.offset;
+
     }
 
     public void Update()
     {
-        float speed = Input.GetAxisRaw("Horizontal");
-        playerAnimator.SetFloat("Speed", Mathf.Abs(speed));
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float VerticalInput = Input.GetAxisRaw("Jump");
 
+        PlayerMovement(horizontalInput, VerticalInput);
+        PlayerMovementAnimation(horizontalInput, VerticalInput);
+    }
+
+    public void PlayerMovement(float horizontalInput, float verticalInput)
+    {
+        Vector3 currentPosition = transform.position;
+        currentPosition.x += horizontalInput * playerHorizontalSpeed * Time.deltaTime;
+        transform.position = currentPosition;
+
+        if (verticalInput > 0 && isGrounded)
+        {
+            PlayJumpAnimation();
+            playerRigidbody2d.AddForce(new Vector2(0f, playerVerticalJumpHeight), ForceMode2D.Impulse);
+        }
+
+    }
+
+    public void PlayerMovementAnimation(float horizontalInput, float verticalInput)
+    {
+        playerAnimator.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
         Vector3 scale = transform.localScale;
-        if (speed < 0f)
+        if (horizontalInput < 0f)
         {
             scale.x = -1f * Mathf.Abs(scale.x);
         }
@@ -31,32 +58,29 @@ public class PlayerController : MonoBehaviour
         {
             scale.x = Mathf.Abs(scale.x);
         }
+
         transform.localScale = scale;
-
-
-        float VerticalInput = Input.GetAxis("Vertical");
-
-        PlayJumpAnimation(VerticalInput);
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            Crouch(true);
+            PlayCrouchAnimation(true);
         }
         else
         {
-            Crouch(false);
+            PlayCrouchAnimation(false);
         }
     }
 
-    public void Crouch(bool crouch)
-    {
-        if (crouch == true)
-        {
-            float offX = -0.1581616f;
-            float offY = 0.6157525f;
 
-            float sizeX = 0.7675232f;
-            float sizeY = 1.275061f;
+    public void PlayCrouchAnimation(bool crouchValue)
+    {
+        if (crouchValue == true)
+        {
+            float offX = -0.158f;
+            float offY = 0.615f;
+
+            float sizeX = 0.767f;
+            float sizeY = 1.275f;
 
             boxCol.size = new Vector2(sizeX, sizeY);
             boxCol.offset = new Vector2(offX, offY);
@@ -68,14 +92,28 @@ public class PlayerController : MonoBehaviour
             boxCol.offset = boxColInitOffset;
         }
 
-        playerAnimator.SetBool("Crouch", crouch);
+        playerAnimator.SetBool("Crouch", crouchValue);
     }
 
-    public void PlayJumpAnimation(float vertical)
+    public void PlayJumpAnimation()
     {
-        if (vertical > 0)
+        playerAnimator.SetTrigger("Jump");
+    }
+
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Platform"))
         {
-            playerAnimator.SetTrigger("Jump");
+            isGrounded = true;
         }
     }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            isGrounded = false;
+        }
+    }
+
 }
