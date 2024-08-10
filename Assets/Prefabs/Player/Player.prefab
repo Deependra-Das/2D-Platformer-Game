@@ -172,4 +172,4 @@ MonoBehaviour:
   playerRigidbody2d: {fileID: 6932732858187791562}
   boxCol: {fileID: 6932732858187791561}
   playerHorizontalSpeed: 10
-  playerVerticalJumpHeight: 20
+  playerVerticalJumpHeight: 5

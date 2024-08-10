@@ -306,7 +306,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.012414753}
+  m_Offset: {x: 0, y: -0.067767814}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -317,7 +317,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.6772157}
+  m_Size: {x: 1, y: 0.5665096}
   m_EdgeRadius: 0
 --- !u!1001 &6932732858187791559
 PrefabInstance:
@@ -328,7 +328,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 887410889, guid: 10b8a74b9caa7bc45a3ac3ee10109075, type: 3}
       propertyPath: playerVerticalJumpHeight
-      value: 100
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6932732858187791562, guid: 10b8a74b9caa7bc45a3ac3ee10109075,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6932732858686814096, guid: 10b8a74b9caa7bc45a3ac3ee10109075,
         type: 3}

@@ -39,8 +39,8 @@ public class PlayerController : MonoBehaviour
 
         if (verticalInput > 0 && isGrounded)
         {
-            playerRigidbody2d.AddForce(new Vector2(0f, playerVerticalJumpHeight), ForceMode2D.Force);
             PlayJumpAnimation();
+            playerRigidbody2d.AddForce(new Vector2(0f, playerVerticalJumpHeight), ForceMode2D.Impulse);
         }
 
     }
@@ -97,12 +97,11 @@ public class PlayerController : MonoBehaviour
 
     public void PlayJumpAnimation()
     {
-        Debug.Log("Playing Jump Animation");
         playerAnimator.SetTrigger("Jump");
     }
 
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("Platform"))
         {
