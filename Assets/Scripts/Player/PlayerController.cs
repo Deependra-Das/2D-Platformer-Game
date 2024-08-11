@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         currentPosition.x += horizontalInput * playerHorizontalSpeed * Time.deltaTime;
         transform.position = currentPosition;
 
-        if (verticalInput > 0 && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && verticalInput > 0 && isGrounded)
         {
             PlayJumpAnimation();
             playerRigidbody2d.AddForce(new Vector2(0f, playerVerticalJumpHeight), ForceMode2D.Impulse);
