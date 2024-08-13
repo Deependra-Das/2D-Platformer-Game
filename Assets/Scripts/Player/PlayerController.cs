@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight=true;
     private Vector2 boxColInitSize;
     private Vector2 boxColInitOffset;
-
     private bool isGrounded;
+    UIManagerController uiManagerObject;
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
         boxColInitSize = playerBoxCollider2d.size;
         boxColInitOffset = playerBoxCollider2d.offset;
-
+        uiManagerObject= GameObject.Find("Canvas").GetComponent<UIManagerController>();
     }
 
     public void Update()
@@ -120,6 +120,12 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    public void KeyPickedUp()
+    {
+        Debug.Log("Key Picked Up");
+        uiManagerObject.IncreaseScore(10);
     }
 
 }
