@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private Animator playerAnimator;
-    [SerializeField] private Rigidbody2D playerRigidbody2d;
-    [SerializeField] private BoxCollider2D boxCol;
+    private Animator playerAnimator;
+    private Rigidbody2D playerRigidbody2d;
+    private BoxCollider2D playerBoxCollider2d;
     [SerializeField] private float playerHorizontalSpeed;
     [SerializeField] private float playerVerticalJumpHeight;
-
+    private bool isFacingRight=true;
     private Vector2 boxColInitSize;
     private Vector2 boxColInitOffset;
 
@@ -17,50 +17,51 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        boxColInitSize = boxCol.size;
-        boxColInitOffset = boxCol.offset;
+        playerRigidbody2d=GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
+        playerBoxCollider2d = GetComponent<BoxCollider2D>();
+
+        boxColInitSize = playerBoxCollider2d.size;
+        boxColInitOffset = playerBoxCollider2d.offset;
 
     }
 
     public void Update()
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float VerticalInput = Input.GetAxisRaw("Jump");
+        float horizontalInput = Input.GetAxis("Horizontal");
 
-        PlayerMovement(horizontalInput, VerticalInput);
-        PlayerMovementAnimation(horizontalInput, VerticalInput);
+        PlayerMovement(horizontalInput);
+        PlayerMovementAnimation(horizontalInput);
     }
 
-    public void PlayerMovement(float horizontalInput, float verticalInput)
+    public void PlayerMovement(float horizontalInput)
     {
-        Vector3 currentPosition = transform.position;
-        currentPosition.x += horizontalInput * playerHorizontalSpeed * Time.deltaTime;
-        transform.position = currentPosition;
+   
+        playerRigidbody2d.velocity= new Vector2(horizontalInput * playerHorizontalSpeed, playerRigidbody2d.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && verticalInput > 0 && isGrounded)
+        if(Input.GetButtonDown("Jump") && isGrounded)
         {
-            PlayJumpAnimation();
-            playerRigidbody2d.AddForce(new Vector2(0f, playerVerticalJumpHeight), ForceMode2D.Impulse);
+            playerRigidbody2d.velocity = new Vector2(playerRigidbody2d.velocity.x, playerVerticalJumpHeight);
+        }
+        if (Input.GetButtonUp("Jump") && playerRigidbody2d.velocity.y > 0f)
+        {
+            playerRigidbody2d.velocity = new Vector2(playerRigidbody2d.velocity.x, playerRigidbody2d.velocity.y * -0.5f);
         }
 
     }
 
-    public void PlayerMovementAnimation(float horizontalInput, float verticalInput)
+    public void PlayerMovementAnimation(float horizontalInput)
     {
         playerAnimator.SetFloat("Speed", Mathf.Abs(horizontalInput));
 
-        Vector3 scale = transform.localScale;
-        if (horizontalInput < 0f)
+        if (isFacingRight && horizontalInput < 0f || !isFacingRight && horizontalInput > 0f)
         {
-            scale.x = -1f * Mathf.Abs(scale.x);
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x = -1f * localScale.x;
+            transform.localScale = localScale;
         }
-        else
-        {
-            scale.x = Mathf.Abs(scale.x);
-        }
-
-        transform.localScale = scale;
-
+      
         if (Input.GetKey(KeyCode.LeftControl))
         {
             PlayCrouchAnimation(true);
@@ -68,6 +69,11 @@ public class PlayerController : MonoBehaviour
         else
         {
             PlayCrouchAnimation(false);
+        }
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            PlayJumpAnimation();
         }
     }
 
@@ -82,14 +88,14 @@ public class PlayerController : MonoBehaviour
             float sizeX = 0.767f;
             float sizeY = 1.275f;
 
-            boxCol.size = new Vector2(sizeX, sizeY);
-            boxCol.offset = new Vector2(offX, offY);
+            playerBoxCollider2d.size = new Vector2(sizeX, sizeY);
+            playerBoxCollider2d.offset = new Vector2(offX, offY);
         }
 
         else
         {
-            boxCol.size = boxColInitSize;
-            boxCol.offset = boxColInitOffset;
+            playerBoxCollider2d.size = boxColInitSize;
+            playerBoxCollider2d.offset = boxColInitOffset;
         }
 
         playerAnimator.SetBool("Crouch", crouchValue);
