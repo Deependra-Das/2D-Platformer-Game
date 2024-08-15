@@ -11,18 +11,21 @@ public class EnemyController : MonoBehaviour
     private Animator enemyAnimator;
     private Transform currentPoint;
     public float speed;
+    public bool initialDirectionRight;
 
     private void Start()
     {
         enemyRigidbody2d = GetComponent<Rigidbody2D>();
         enemyAnimator = GetComponent<Animator>();
-        currentPoint = pointB.transform;
-
+        currentPoint = initialDirectionRight == true? pointA.transform:pointB.transform;
+        if(currentPoint== pointA.transform)
+        {
+            FlipSprite();
+        }
     }
 
     public void Update()
     {
-       // Vector2 point = currentPoint.position - transform.position;
         if (currentPoint == pointB.transform)
         {
             enemyRigidbody2d.velocity = new Vector2(speed, 0);
