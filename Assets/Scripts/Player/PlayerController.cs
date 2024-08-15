@@ -127,5 +127,9 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Key Picked Up");
         uiManagerObject.IncreaseScore(10);
     }
+    public void KillPlayer()
+    {
+        Debug.Log("Player Killed");        
+    }
 
 }
