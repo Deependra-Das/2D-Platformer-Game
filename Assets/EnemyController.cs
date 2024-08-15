@@ -31,21 +31,17 @@ public class EnemyController : MonoBehaviour
         {
             enemyRigidbody2d.velocity = new Vector2(-speed, 0);
         }
-
-        Debug.Log(Vector2.Distance(transform.position, currentPoint.position));
-
+         
         if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB.transform)
         {
             FlipSprite();
             currentPoint = pointA.transform;
-            Debug.Log(currentPoint.position+" At B ");
         }
 
         if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA.transform)
         {
             FlipSprite();
             currentPoint = pointB.transform;
-            Debug.Log(currentPoint.position + " At A ");
         }
 
 
@@ -56,8 +52,8 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
-            PlayerController playerControllerObject = other.gameObject.GetComponent<PlayerController>();
-            playerControllerObject.KillPlayer();
+            PlayerController playerObject = other.gameObject.GetComponent<PlayerController>();
+            playerObject.DamagePlayer(1);
         }
     }
 

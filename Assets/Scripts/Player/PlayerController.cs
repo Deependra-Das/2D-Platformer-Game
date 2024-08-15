@@ -1,14 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     private Animator playerAnimator;
     private Rigidbody2D playerRigidbody2d;
     private BoxCollider2D playerBoxCollider2d;
-    [SerializeField] private float playerHorizontalSpeed;
-    [SerializeField] private float playerVerticalJumpHeight;
+
+    [SerializeField] 
+    private float playerHorizontalSpeed;
+
+    [SerializeField] 
+    private float playerVerticalJumpHeight;
+
+    [SerializeField] 
+    private int playerLives;
+
     private bool isFacingRight=true;
     private Vector2 boxColInitSize;
     private Vector2 boxColInitOffset;
@@ -32,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
         PlayerMovement(horizontalInput);
         PlayerMovementAnimation(horizontalInput);
+        CheckPlayerDeath();
     }
 
     public void PlayerMovement(float horizontalInput)
@@ -127,9 +137,29 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Key Picked Up");
         uiManagerObject.IncreaseScore(10);
     }
+
+    public void DamagePlayer(int damageValue)
+    {
+        playerLives -= damageValue;
+    }
+
+    public void CheckPlayerDeath()
+    {
+        if (playerLives < 1)
+        {
+            KillPlayer();
+        }
+    }
+
     public void KillPlayer()
     {
-        Debug.Log("Player Killed");        
+        Debug.Log("Player Killed");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public int getPlayerLives()
+    {
+        return playerLives;
     }
 
 }
