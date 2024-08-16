@@ -5,73 +5,60 @@ using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
-    public GameObject pointA;
-    public GameObject pointB;
     private Rigidbody2D enemyRigidbody2d;
     private Animator enemyAnimator;
-    private Transform currentPoint;
-    public float speed;
-    public bool initialDirectionRight;
+
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private GameObject groundDetector;
+    [SerializeField] private float rayDistance;
+    [SerializeField] private int directionChanger;
+
 
     private void Start()
     {
         enemyRigidbody2d = GetComponent<Rigidbody2D>();
         enemyAnimator = GetComponent<Animator>();
-        currentPoint = initialDirectionRight == true? pointA.transform:pointB.transform;
-        if(currentPoint== pointA.transform)
+        if(directionChanger==-1)
         {
             FlipSprite();
         }
     }
 
-    public void Update()
+
+    void Update()
     {
-        if (currentPoint == pointB.transform)
-        {
-            enemyRigidbody2d.velocity = new Vector2(speed, 0);
-        }
-        else
-        {
-            enemyRigidbody2d.velocity = new Vector2(-speed, 0);
-        }
-         
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB.transform)
-        {
-            FlipSprite();
-            currentPoint = pointA.transform;
-        }
-
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA.transform)
-        {
-            FlipSprite();
-            currentPoint = pointB.transform;
-        }
-
-
+        patrolEnemy();
     }
 
+    private void patrolEnemy()
+    {
+        enemyAnimator.SetBool("IsPatrol", true);
+
+        transform.Translate(directionChanger * Vector2.right * moveSpeed * Time.deltaTime);
+
+        RaycastHit2D hit = Physics2D.Raycast(groundDetector.transform.position, Vector2.down, rayDistance);
+
+        if (!hit)
+        {
+            FlipSprite();
+            directionChanger *= -1;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
             PlayerController playerObject = other.gameObject.GetComponent<PlayerController>();
-            playerObject.DamagePlayer(1);
+            playerObject.DecreaseHealth(1);
         }
     }
 
     private void FlipSprite()
     {
-        Vector3 localScale = transform.localScale;
-        localScale.x*=-1;
-        transform.localScale = localScale;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(pointA.transform.position, 0.5f);
-        Gizmos.DrawWireSphere(pointB.transform.position, 0.5f);
-        Gizmos.DrawLine(pointA.transform.position, pointB.transform.position);
+        Vector3 scaleVector = transform.localScale;
+        scaleVector.x *= -1;
+        transform.localScale = scaleVector;
     }
 
 }

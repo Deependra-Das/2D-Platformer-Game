@@ -14,6 +14,9 @@ public class UIManagerController : MonoBehaviour
 
     public Image[] healthImageList;
 
+    [SerializeField] 
+    private GameObject deathUIPanel;
+
     void Start()
     {
       playerObject = GameObject.Find("Player").GetComponent<PlayerController>();

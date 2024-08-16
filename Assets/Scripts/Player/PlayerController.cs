@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 boxColInitSize;
     private Vector2 boxColInitOffset;
     private bool isGrounded;
+    private bool isDead = false;
+    private Camera mainCamera;
     UIManagerController uiManagerObject;
 
     private void Start()
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
         playerRigidbody2d=GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         playerBoxCollider2d = GetComponent<BoxCollider2D>();
+        mainCamera = Camera.main;
 
         boxColInitSize = playerBoxCollider2d.size;
         boxColInitOffset = playerBoxCollider2d.offset;
@@ -138,7 +141,7 @@ public class PlayerController : MonoBehaviour
         uiManagerObject.IncreaseScore(10);
     }
 
-    public void DamagePlayer(int damageValue)
+    public void DecreaseHealth(int damageValue)
     {
         playerLives -= damageValue;
     }
@@ -147,19 +150,27 @@ public class PlayerController : MonoBehaviour
     {
         if (playerLives < 1)
         {
-            KillPlayer();
+            PlayerDeath();
         }
     }
 
-    public void KillPlayer()
+    public void PlayerDeath()
     {
-        Debug.Log("Player Killed");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        isDead = true;
+        mainCamera.transform.parent = null;
+        //deathUIPanel.gameObject.SetActive(true);
+        playerRigidbody2d.constraints = RigidbodyConstraints2D.FreezePosition;
+        ReloadLevel();
     }
 
     public int getPlayerLives()
     {
         return playerLives;
+    }
+
+    private void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }
