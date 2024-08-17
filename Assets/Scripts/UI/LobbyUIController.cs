@@ -13,12 +13,19 @@ public class LobbyUIController : MonoBehaviour
     [SerializeField]
     private Button QuitButton;
 
-    public void OnPlayButtonPressed()
+    void Start()
+    {
+        playButton.onClick.AddListener(StartGameplay);
+        QuitButton.onClick.AddListener(QuitGame);
+
+    }
+
+    public void StartGameplay()
     {
         SceneManager.LoadScene(1);
     }
 
-    public void OnQuitButtonPressed()
+    public void QuitGame()
     {
        Application.Quit();
     }

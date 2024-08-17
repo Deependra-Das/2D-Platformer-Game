@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class UIManagerController : MonoBehaviour
+public class GameUIController : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI scoreText;
@@ -15,16 +16,26 @@ public class UIManagerController : MonoBehaviour
     public Image[] healthImageList;
 
     [SerializeField] 
-    private GameObject deathUIPanel;
+    private GameObject GameOverUIPanel;
+
+    [SerializeField]
+    private Button RestartLevelButton;
+
+    [SerializeField]
+    private Button BackToMenuButton;
 
     void Start()
     {
-      playerObject = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerObject = GameObject.Find("Player").GetComponent<PlayerController>();
+        GameOverUIPanel.SetActive(false);
 
         foreach (Image img in healthImageList)
         {
             img.GetComponentInChildren<CanvasRenderer>().gameObject.SetActive(true);
         }
+
+        RestartLevelButton.onClick.AddListener(RestartLevel);
+        BackToMenuButton.onClick.AddListener(BackToMenu);
 
         RefreshUI();
     }
@@ -59,6 +70,22 @@ public class UIManagerController : MonoBehaviour
         {
             healthImageList[i].GetComponentInChildren<CanvasRenderer>().gameObject.SetActive(true);
         }
+    }
+
+    public void ActivateGameOverPanel()
+    {
+        GameOverUIPanel.SetActive(true);
+
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }

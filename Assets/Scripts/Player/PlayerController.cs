@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isDead = false;
     private Camera mainCamera;
-    UIManagerController uiManagerObject;
+    GameUIController gameUIControllerObject;
 
     private void Start()
     {
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
         boxColInitSize = playerBoxCollider2d.size;
         boxColInitOffset = playerBoxCollider2d.offset;
-        uiManagerObject= GameObject.Find("Canvas").GetComponent<UIManagerController>();
+        gameUIControllerObject = GameObject.Find("Canvas").GetComponent<GameUIController>();
     }
 
     public void Update()
@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
 
         PlayerMovement(horizontalInput);
         PlayerMovementAnimation(horizontalInput);
-        CheckPlayerDeath();
     }
 
     public void PlayerMovement(float horizontalInput)
@@ -138,12 +137,13 @@ public class PlayerController : MonoBehaviour
     public void KeyPickedUp()
     {
         Debug.Log("Key Picked Up");
-        uiManagerObject.IncreaseScore(10);
+        gameUIControllerObject.IncreaseScore(10);
     }
 
     public void DecreaseHealth(int damageValue)
     {
         playerLives -= damageValue;
+        CheckPlayerDeath();
     }
 
     public void CheckPlayerDeath()
@@ -158,9 +158,9 @@ public class PlayerController : MonoBehaviour
     {
         isDead = true;
         mainCamera.transform.parent = null;
-        //deathUIPanel.gameObject.SetActive(true);
+        this.enabled = false;
+        gameUIControllerObject.ActivateGameOverPanel();
         playerRigidbody2d.constraints = RigidbodyConstraints2D.FreezePosition;
-        ReloadLevel();
     }
 
     public int getPlayerLives()
