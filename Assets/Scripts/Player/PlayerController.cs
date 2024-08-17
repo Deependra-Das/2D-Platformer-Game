@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     private Animator playerAnimator;
     private Rigidbody2D playerRigidbody2d;
     private BoxCollider2D playerBoxCollider2d;
-    [SerializeField] private float playerHorizontalSpeed;
-    [SerializeField] private float playerVerticalJumpHeight;
+
+    [SerializeField] 
+    private float playerHorizontalSpeed;
+
+    [SerializeField] 
+    private float playerVerticalJumpHeight;
+
+    [SerializeField] 
+    private int playerLives;
+
     private bool isFacingRight=true;
     private Vector2 boxColInitSize;
     private Vector2 boxColInitOffset;
     private bool isGrounded;
+    private bool isDead = false;
+    private Camera mainCamera;
     UIManagerController uiManagerObject;
 
     private void Start()
@@ -20,6 +31,7 @@ public class PlayerController : MonoBehaviour
         playerRigidbody2d=GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         playerBoxCollider2d = GetComponent<BoxCollider2D>();
+        mainCamera = Camera.main;
 
         boxColInitSize = playerBoxCollider2d.size;
         boxColInitOffset = playerBoxCollider2d.offset;
@@ -32,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
         PlayerMovement(horizontalInput);
         PlayerMovementAnimation(horizontalInput);
+        CheckPlayerDeath();
     }
 
     public void PlayerMovement(float horizontalInput)
@@ -126,6 +139,38 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Key Picked Up");
         uiManagerObject.IncreaseScore(10);
+    }
+
+    public void DecreaseHealth(int damageValue)
+    {
+        playerLives -= damageValue;
+    }
+
+    public void CheckPlayerDeath()
+    {
+        if (playerLives < 1)
+        {
+            PlayerDeath();
+        }
+    }
+
+    public void PlayerDeath()
+    {
+        isDead = true;
+        mainCamera.transform.parent = null;
+        //deathUIPanel.gameObject.SetActive(true);
+        playerRigidbody2d.constraints = RigidbodyConstraints2D.FreezePosition;
+        ReloadLevel();
+    }
+
+    public int getPlayerLives()
+    {
+        return playerLives;
+    }
+
+    private void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }
