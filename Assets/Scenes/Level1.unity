@@ -301,7 +301,7 @@ PrefabInstance:
     - target: {fileID: 6899756864696592782, guid: 805dd47b4e2fd77479647ff6ddb163e3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.794613
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6899756864696592782, guid: 805dd47b4e2fd77479647ff6ddb163e3,
         type: 3}
@@ -737,6 +737,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Chomper_2
       objectReference: {fileID: 0}
+    - target: {fileID: 6899756864696592781, guid: 805dd47b4e2fd77479647ff6ddb163e3,
+        type: 3}
+      propertyPath: directionChanger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6899756864696592782, guid: 805dd47b4e2fd77479647ff6ddb163e3,
         type: 3}
       propertyPath: m_RootOrder
@@ -745,17 +750,17 @@ PrefabInstance:
     - target: {fileID: 6899756864696592782, guid: 805dd47b4e2fd77479647ff6ddb163e3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.08
+      value: 8.56
       objectReference: {fileID: 0}
     - target: {fileID: 6899756864696592782, guid: 805dd47b4e2fd77479647ff6ddb163e3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.1461906
+      value: -2.146191
       objectReference: {fileID: 0}
     - target: {fileID: 6899756864696592782, guid: 805dd47b4e2fd77479647ff6ddb163e3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.794613
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6899756864696592782, guid: 805dd47b4e2fd77479647ff6ddb163e3,
         type: 3}
@@ -4403,6 +4408,7 @@ MonoBehaviour:
   - {fileID: 66388562}
   - {fileID: 1655066057}
   - {fileID: 1570072542}
+  deathUIPanel: {fileID: 0}
 --- !u!1 &1973956798
 GameObject:
   m_ObjectHideFlags: 0
