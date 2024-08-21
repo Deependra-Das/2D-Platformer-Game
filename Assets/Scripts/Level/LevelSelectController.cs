@@ -46,8 +46,23 @@ public class LevelSelectController : MonoBehaviour
 
     private void onClickStartLevelButton()
     {
-        Debug.Log(selectedLevelName);
-        SceneManager.LoadScene(selectedLevelName);
+       LevelStatus levelStatus = LevelManager.Instance.GetLevelStatus(selectedLevelName);
+        switch(levelStatus)
+        {
+            case LevelStatus.LOCKED:
+                Debug.Log("Complete the previous Level to Unlock & Play this level.");
+                break;
+                
+            case LevelStatus.UNLOCKED:
+                SceneManager.LoadScene(selectedLevelName);
+                break;
+
+            case LevelStatus.COMPLETED:
+                SceneManager.LoadScene(selectedLevelName);
+                break;
+        }
+
+        
     }
 
     private void onClickCloseButton()
