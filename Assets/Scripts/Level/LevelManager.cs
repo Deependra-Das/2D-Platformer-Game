@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour
         int currentSceneIndex = Array.FindIndex(LevelsList, level => level == currentScene.name);
         int nextSceneIndex = currentSceneIndex + 1;
 
-        if (nextSceneIndex < LevelsList.Length)
+        if (IsValidLevel(nextSceneIndex))
         {
             SetLevelStatus(LevelsList[nextSceneIndex], LevelStatus.UNLOCKED);
         }
@@ -71,6 +71,30 @@ public class LevelManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(level, (int)levelStatus);
         Debug.Log(level + " : " + levelStatus);
+    }
+
+    public bool IsValidLevel(int levelIndex)
+    {
+        if (levelIndex < LevelsList.Length)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public string GetLevelSceneName(int levelIndex)
+    {
+        if(IsValidLevel(levelIndex))
+        {
+            return LevelsList[levelIndex];
+        }
+        else
+        {
+            return null;
+        }
     }
 
 }

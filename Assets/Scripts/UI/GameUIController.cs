@@ -87,5 +87,16 @@ public class GameUIController : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+    public void PlayNextLevel()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+        if (LevelManager.Instance.IsValidLevel(nextSceneIndex))
+        {
+                SceneManager.LoadScene(nextSceneIndex);
+                       
+        }
+      
+    }
 
 }
