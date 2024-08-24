@@ -5,14 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class LevelCompleteController : MonoBehaviour
 {
+    public GameObject LevelCompletedPanel;
     private void OnTriggerEnter2D(Collider2D other)
     {
-       // Debug.Log("Collision Detected");
-
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
-            //Debug.Log("Level Completed");
-            SceneManager.LoadScene("Level2");
+            Debug.Log("Level Completed");
+            LevelManager.Instance.SetCurrentLevelCompleted();
+
+            LevelCompletedPanel.SetActive(true);
         }
     }
   
