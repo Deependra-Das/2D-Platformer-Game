@@ -54,19 +54,25 @@ public class LevelSelectController : MonoBehaviour
                 break;
                 
             case LevelStatus.UNLOCKED:
+                AudioManager.Instance.PlaySFX(AudioTypeList.buttonStartClick);
+                AudioManager.Instance.PlayBGM(AudioTypeList.backgroundMusic);
                 SceneManager.LoadScene(selectedLevelName);
+        
                 break;
 
             case LevelStatus.COMPLETED:
+                AudioManager.Instance.PlaySFX(AudioTypeList.buttonStartClick);
+                AudioManager.Instance.PlayBGM(AudioTypeList.backgroundMusic);
                 SceneManager.LoadScene(selectedLevelName);
+           
                 break;
         }
-
-        
+                
     }
 
     private void onClickCloseButton()
     {
+        AudioManager.Instance.PlaySFX(AudioTypeList.buttonBackClick);
         this.gameObject.SetActive(false);
     }
 
@@ -81,6 +87,7 @@ public class LevelSelectController : MonoBehaviour
                 levelButton.GetComponent<Image>().sprite = SelectedButtonSprite;
             }
         }
+        AudioManager.Instance.PlaySFX(AudioTypeList.buttonOptionClick);
 
     }
 

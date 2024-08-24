@@ -24,6 +24,8 @@ public class LobbyUIController : MonoBehaviour
 
     public void StartGameplay()
     {
+        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+
         LevelSelectionPanel.SetActive(true);
     }
 
