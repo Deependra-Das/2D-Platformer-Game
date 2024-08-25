@@ -18,12 +18,6 @@ public class GameUIController : MonoBehaviour
     [SerializeField] 
     private GameObject GameOverUIPanel;
 
-    [SerializeField]
-    private Button RestartLevelButton;
-
-    [SerializeField]
-    private Button BackToMenuButton;
-
     void Start()
     {
         playerObject = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -34,10 +28,9 @@ public class GameUIController : MonoBehaviour
             img.GetComponentInChildren<CanvasRenderer>().gameObject.SetActive(true);
         }
 
-        RestartLevelButton.onClick.AddListener(RestartLevel);
-        BackToMenuButton.onClick.AddListener(BackToMenu);
-
         RefreshUI();
+
+        AudioManager.Instance.PlayBGM(AudioTypeList.backgroundMusic);
     }
 
     private void Update()
@@ -76,27 +69,6 @@ public class GameUIController : MonoBehaviour
     {
         GameOverUIPanel.SetActive(true);
 
-    }
-
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void BackToMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
-    public void PlayNextLevel()
-    {
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
-        if (LevelManager.Instance.IsValidLevel(nextSceneIndex))
-        {
-                SceneManager.LoadScene(nextSceneIndex);
-                       
-        }
-      
     }
 
 }

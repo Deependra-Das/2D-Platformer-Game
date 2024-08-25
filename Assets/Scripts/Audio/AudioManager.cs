@@ -11,7 +11,8 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource audioSourceSFX;
     public AudioSource audioSourceBGM;
-
+    public AudioSource audioSourcePlayer;
+    public AudioSource audioSourceEnemy;
     public AudioType[] AudioList;
 
     private void Awake()
@@ -63,17 +64,55 @@ public class AudioManager : MonoBehaviour
         }
         return null;
     }
+
+    public void PlayFootstepsAudio()
+    {
+        AudioClip clip = GetAudioClip((AudioTypeList)UnityEngine.Random.Range(5,9));
+        audioSourcePlayer.clip = clip;
+        audioSourcePlayer.Play();
+    }
+
+    public void PlayJumpFootestepAudio()
+    {
+        AudioClip clip = GetAudioClip(AudioTypeList.playerFootstepJump);
+        audioSourcePlayer.clip = clip;
+        audioSourcePlayer.Play();
+    }
+
+    public void PlayLandFootestepAudio()
+    {
+        AudioClip clip = GetAudioClip(AudioTypeList.playerFootstepLand);
+        audioSourcePlayer.clip = clip;
+        audioSourcePlayer.Play();
+    }
+
+    public void PlayEnemyFootestepAudio()
+    {
+        AudioClip clip = GetAudioClip((AudioTypeList)UnityEngine.Random.Range(15, 17));
+        audioSourceEnemy.clip = clip;
+        audioSourceEnemy.Play();
+        Debug.Log(clip.name);
+    }
 }
 
 public enum AudioTypeList
-{
-    backgroundMusic,
+{   backgroundMusic,
     buttonMenuClick,
     buttonOptionClick,
     buttonBackClick,
     buttonStartClick,
-    playerWalk,
-    playerDeath
+    playerFootstep1,
+    playerFootstep2,
+    playerFootstep3,
+    playerFootstep4,
+    playerFootstep5,
+    playerFootstep6,
+    playerFootstep7,
+    playerFootstep8,
+    playerFootstepJump,
+    playerFootstepLand,
+    enemyFootstep1,
+    enemyFootstep2,
 }
 
 [Serializable]
@@ -82,3 +121,4 @@ public class AudioType
     public AudioTypeList audioType;
     public AudioClip audioClip;
 }
+

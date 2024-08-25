@@ -31,6 +31,7 @@ public class LobbyUIController : MonoBehaviour
 
     public void QuitGame()
     {
-       Application.Quit();
+        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+        Application.Quit();
     }
 }

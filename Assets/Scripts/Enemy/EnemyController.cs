@@ -54,11 +54,21 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
+
     private void FlipSprite()
     {
         Vector3 scaleVector = transform.localScale;
         scaleVector.x *= -1;
         transform.localScale = scaleVector;
+    }
+
+    public void PlayEnemyFootestepAudio()
+    {
+        AudioManager.Instance.PlayEnemyFootestepAudio();
     }
 
 }

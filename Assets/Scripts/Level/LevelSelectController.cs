@@ -55,14 +55,12 @@ public class LevelSelectController : MonoBehaviour
                 
             case LevelStatus.UNLOCKED:
                 AudioManager.Instance.PlaySFX(AudioTypeList.buttonStartClick);
-                AudioManager.Instance.PlayBGM(AudioTypeList.backgroundMusic);
                 SceneManager.LoadScene(selectedLevelName);
         
                 break;
 
             case LevelStatus.COMPLETED:
                 AudioManager.Instance.PlaySFX(AudioTypeList.buttonStartClick);
-                AudioManager.Instance.PlayBGM(AudioTypeList.backgroundMusic);
                 SceneManager.LoadScene(selectedLevelName);
            
                 break;
