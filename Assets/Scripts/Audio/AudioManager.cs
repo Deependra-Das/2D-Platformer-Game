@@ -91,6 +91,13 @@ public class AudioManager : MonoBehaviour
         AudioClip clip = GetAudioClip((AudioTypeList)UnityEngine.Random.Range(15, 17));
         audioSourceEnemy.clip = clip;
         audioSourceEnemy.Play();
+    }
+
+    public void PlayEnemyAttackAudio()
+    {
+        AudioClip clip = GetAudioClip((AudioTypeList)UnityEngine.Random.Range(17, 21));
+        audioSourceEnemy.clip = clip;
+        audioSourceEnemy.Play();
         Debug.Log(clip.name);
     }
 }
@@ -113,6 +120,11 @@ public enum AudioTypeList
     playerFootstepLand,
     enemyFootstep1,
     enemyFootstep2,
+    enemyAttack1,
+    enemyAttack2,
+    enemyAttack3,
+    enemyAttack4,
+    keyPickUp,
 }
 
 [Serializable]
