@@ -70,8 +70,9 @@ MonoBehaviour:
 
     Completed'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e85f1cf0bfd4d1447bed2bc737c47be7, type: 2}
+  m_sharedMaterial: {fileID: 21069318434546836, guid: e85f1cf0bfd4d1447bed2bc737c47be7,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -229,6 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6147ee5bf4edc2f41b72091a16a620d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayNextLevelButton: {fileID: 0}
+  BackToMenuButton: {fileID: 0}
 --- !u!1001 &448973554825177601
 PrefabInstance:
   m_ObjectHideFlags: 0

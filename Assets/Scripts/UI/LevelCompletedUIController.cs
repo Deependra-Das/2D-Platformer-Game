@@ -23,7 +23,7 @@ public class LevelCompletedUIController : MonoBehaviour
 
         if (LevelManager.Instance.IsValidLevel(nextSceneIndex))
         {
-            AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+            AudioManager.Instance.PlaySFX(AudioTypeList.buttonStartClick);
             SceneManager.LoadScene(nextSceneIndex);
 
         }

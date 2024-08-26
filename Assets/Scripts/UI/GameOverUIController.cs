@@ -20,12 +20,13 @@ public class GameOverUIController : MonoBehaviour
 
     public void RestartLevel()
     {
-        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+        AudioManager.Instance.PlaySFX(AudioTypeList.buttonStartClick);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void BackToMenu()
     {
+        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
         AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
         SceneManager.LoadScene(0);
     }
