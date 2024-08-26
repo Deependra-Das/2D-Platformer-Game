@@ -100,6 +100,13 @@ public class AudioManager : MonoBehaviour
         audioSourceEnemy.Play();
         Debug.Log(clip.name);
     }
+    public void PlayPlayerDeathAudio()
+    {
+        AudioClip clip = GetAudioClip((AudioTypeList)UnityEngine.Random.Range(21, 23));
+        audioSourceEnemy.clip = clip;
+        audioSourceEnemy.Play();
+        Debug.Log(clip.name);
+    }
 }
 
 public enum AudioTypeList
@@ -125,6 +132,9 @@ public enum AudioTypeList
     enemyAttack3,
     enemyAttack4,
     keyPickUp,
+    playerDeath1,
+    playerDeath2,
+    telportUsed,
 }
 
 [Serializable]

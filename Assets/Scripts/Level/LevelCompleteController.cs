@@ -10,9 +10,9 @@ public class LevelCompleteController : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
+            AudioManager.Instance.PlaySFX(AudioTypeList.telportUsed);
             Debug.Log("Level Completed");
             LevelManager.Instance.SetCurrentLevelCompleted();
-
             LevelCompletedPanel.SetActive(true);
         }
     }
