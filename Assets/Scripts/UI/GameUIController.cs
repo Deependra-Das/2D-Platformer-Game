@@ -18,12 +18,6 @@ public class GameUIController : MonoBehaviour
     [SerializeField] 
     private GameObject GameOverUIPanel;
 
-    [SerializeField]
-    private Button RestartLevelButton;
-
-    [SerializeField]
-    private Button BackToMenuButton;
-
     void Start()
     {
         playerObject = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -34,10 +28,12 @@ public class GameUIController : MonoBehaviour
             img.GetComponentInChildren<CanvasRenderer>().gameObject.SetActive(true);
         }
 
-        RestartLevelButton.onClick.AddListener(RestartLevel);
-        BackToMenuButton.onClick.AddListener(BackToMenu);
-
         RefreshUI();
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourcePlayer, false);
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceEnemy, false);
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceSFX, false);
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceBGM, false);
+        AudioManager.Instance.PlayBGM(AudioTypeList.backgroundMusic);
     }
 
     private void Update()
@@ -75,28 +71,11 @@ public class GameUIController : MonoBehaviour
     public void ActivateGameOverPanel()
     {
         GameOverUIPanel.SetActive(true);
+        GameOverUIPanel.gameObject.GetComponentInChildren<GameOverUIController>().PlayExplosionParticles();
+        AudioManager.Instance.PlayBGM(AudioTypeList.MusicDeathSting);
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourcePlayer, true);
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceEnemy, true);
 
-    }
-
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void BackToMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
-    public void PlayNextLevel()
-    {
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
-        if (LevelManager.Instance.IsValidLevel(nextSceneIndex))
-        {
-                SceneManager.LoadScene(nextSceneIndex);
-                       
-        }
-      
     }
 
 }

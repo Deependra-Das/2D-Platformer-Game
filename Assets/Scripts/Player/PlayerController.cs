@@ -35,20 +35,22 @@ public class PlayerController : MonoBehaviour
 
         boxColInitSize = playerBoxCollider2d.size;
         boxColInitOffset = playerBoxCollider2d.offset;
-        gameUIControllerObject = GameObject.Find("Canvas").GetComponent<GameUIController>();
+        gameUIControllerObject = GameObject.Find("GameUIContainer").GetComponent<GameUIController>();
     }
 
     public void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
-
-        PlayerMovement(horizontalInput);
-        PlayerMovementAnimation(horizontalInput);
+        if(isDead==false)
+        {
+            PlayerMovement(horizontalInput);
+            PlayerMovementAnimation(horizontalInput);
+        }
+   
     }
 
     public void PlayerMovement(float horizontalInput)
-    {
-   
+    {      
         playerRigidbody2d.velocity= new Vector2(horizontalInput * playerHorizontalSpeed, playerRigidbody2d.velocity.y);
 
         if(Input.GetButtonDown("Jump") && isGrounded)
@@ -156,11 +158,15 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerDeath()
     {
+        playerAnimator.SetTrigger("isDead");
         isDead = true;
         mainCamera.transform.parent = null;
+        this.gameObject.layer = 6;
         this.enabled = false;
+ 
         gameUIControllerObject.ActivateGameOverPanel();
-        playerRigidbody2d.constraints = RigidbodyConstraints2D.FreezePosition;
+        //playerRigidbody2d.constraints = RigidbodyConstraints2D.FreezePosition;
+
     }
 
     public int getPlayerLives()
@@ -171,6 +177,25 @@ public class PlayerController : MonoBehaviour
     private void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void PlayFootstepsAudio()
+    {
+        AudioManager.Instance.PlayFootstepsAudio();
+    }
+
+    public void PlayJumpFootestepAudio()
+    {
+        AudioManager.Instance.PlayJumpFootestepAudio();
+    }
+
+    public void PlayLandFootestepAudio()
+    {
+        AudioManager.Instance.PlayLandFootestepAudio();
+    }
+    public void PlayPlayerDeathAudio()
+    {
+        AudioManager.Instance.PlayPlayerDeathAudio();
     }
 
 }
