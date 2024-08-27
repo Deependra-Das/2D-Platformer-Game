@@ -515,6 +515,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b4cc3937494a64fa65826a281b3a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &669993640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 669993642}
+  - component: {fileID: 669993641}
+  m_Layer: 0
+  m_Name: UICamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!20 &669993641
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669993640}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 32
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &669993642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669993640}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &929092103
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,8 +726,8 @@ Canvas:
   m_GameObject: {fileID: 940644750}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 669993641}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4146,21 +4221,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelCompletedPanel
       objectReference: {fileID: 0}
-    - target: {fileID: 448973555783974675, guid: 60982039e4fac684dbf815063abba2ea,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4743772371297001978, guid: 60982039e4fac684dbf815063abba2ea,
-        type: 3}
-      propertyPath: BackToMenuButton
-      value: 
-      objectReference: {fileID: 1748642536}
-    - target: {fileID: 4743772371297001978, guid: 60982039e4fac684dbf815063abba2ea,
-        type: 3}
-      propertyPath: PlayNextLevelButton
-      value: 
-      objectReference: {fileID: 1748642537}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60982039e4fac684dbf815063abba2ea, type: 3}
 --- !u!224 &1748642535 stripped
@@ -4169,30 +4229,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1748642534}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1748642536 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2373934259447514828, guid: 60982039e4fac684dbf815063abba2ea,
-    type: 3}
-  m_PrefabInstance: {fileID: 1748642534}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1748642537 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2373934259384404688, guid: 60982039e4fac684dbf815063abba2ea,
-    type: 3}
-  m_PrefabInstance: {fileID: 1748642534}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1748642538 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 448973555783974675, guid: 60982039e4fac684dbf815063abba2ea,
@@ -4315,11 +4351,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameOverPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 6476635213922621506, guid: f6f045db0e0b5d04aa5177bc903d8670,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6f045db0e0b5d04aa5177bc903d8670, type: 3}

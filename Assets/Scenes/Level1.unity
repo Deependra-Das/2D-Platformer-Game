@@ -288,6 +288,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b4cc3937494a64fa65826a281b3a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &734171499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 734171502}
+  - component: {fileID: 734171501}
+  m_Layer: 0
+  m_Name: UICamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!20 &734171501
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734171499}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 32
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &734171502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734171499}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &795568757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4417,8 +4492,8 @@ Canvas:
   m_GameObject: {fileID: 1842966938}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 734171501}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4581,9 +4656,59 @@ PrefabInstance:
       objectReference: {fileID: 448973555377111760}
     - target: {fileID: 4743772371297001978, guid: 60982039e4fac684dbf815063abba2ea,
         type: 3}
+      propertyPath: ConfettiParticles
+      value: 
+      objectReference: {fileID: 448973555377111762}
+    - target: {fileID: 4743772371297001978, guid: 60982039e4fac684dbf815063abba2ea,
+        type: 3}
       propertyPath: PlayNextLevelButton
       value: 
       objectReference: {fileID: 448973555377111761}
+    - target: {fileID: 8279244151240098818, guid: 60982039e4fac684dbf815063abba2ea,
+        type: 3}
+      propertyPath: NoiseModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279244151240098818, guid: 60982039e4fac684dbf815063abba2ea,
+        type: 3}
+      propertyPath: RotationModule.x.minScalar
+      value: 4.7996554
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279244151240098818, guid: 60982039e4fac684dbf815063abba2ea,
+        type: 3}
+      propertyPath: RotationModule.y.minScalar
+      value: 4.7996554
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279244151240098818, guid: 60982039e4fac684dbf815063abba2ea,
+        type: 3}
+      propertyPath: ClampVelocityModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279244151240098818, guid: 60982039e4fac684dbf815063abba2ea,
+        type: 3}
+      propertyPath: RotationModule.curve.minScalar
+      value: 4.7996554
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279244151240098818, guid: 60982039e4fac684dbf815063abba2ea,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279244151240098818, guid: 60982039e4fac684dbf815063abba2ea,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279244151240098818, guid: 60982039e4fac684dbf815063abba2ea,
+        type: 3}
+      propertyPath: ClampVelocityModule.magnitude.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8279244151240098819, guid: 60982039e4fac684dbf815063abba2ea,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60982039e4fac684dbf815063abba2ea, type: 3}
 --- !u!114 &448973555377111760 stripped
@@ -4610,6 +4735,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &448973555377111762 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8279244151240098818, guid: 60982039e4fac684dbf815063abba2ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 448973555377111759}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2251087425407094087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5036,8 +5167,19 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8369639650801250967, guid: f6f045db0e0b5d04aa5177bc903d8670,
+        type: 3}
+      propertyPath: ExplosionParticles
+      value: 
+      objectReference: {fileID: 6476635213947501188}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6f045db0e0b5d04aa5177bc903d8670, type: 3}
+--- !u!198 &6476635213947501188 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4018685191539514025, guid: f6f045db0e0b5d04aa5177bc903d8670,
+    type: 3}
+  m_PrefabInstance: {fileID: 6476635213947501187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6932732858187791559
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,6 +12,9 @@ public class GameOverUIController : MonoBehaviour
     [SerializeField]
     private Button BackToMenuButton;
 
+    [SerializeField]
+    private ParticleSystem ExplosionParticles;
+
     private void Awake()
     {
         RestartLevelButton.onClick.AddListener(RestartLevel);
@@ -29,5 +32,10 @@ public class GameOverUIController : MonoBehaviour
         AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
         AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
         SceneManager.LoadScene(0);
+    }
+
+    public void PlayExplosionParticles()
+    {
+        ExplosionParticles.Play();
     }
 }

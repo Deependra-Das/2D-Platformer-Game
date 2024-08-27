@@ -12,6 +12,9 @@ public class LevelCompletedUIController : MonoBehaviour
     [SerializeField]
     private Button BackToMenuButton;
 
+    [SerializeField]
+    private ParticleSystem ConfettiParticles;
+
     private void Awake()
     {
         PlayNextLevelButton.onClick.AddListener(PlayNextLevel);
@@ -34,5 +37,10 @@ public class LevelCompletedUIController : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
         SceneManager.LoadScene(0);
+    }
+
+    public void PlayConfettiParticles()
+    {
+        ConfettiParticles.Play();
     }
 }

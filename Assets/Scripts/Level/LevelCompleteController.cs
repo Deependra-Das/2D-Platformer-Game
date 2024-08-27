@@ -14,7 +14,9 @@ public class LevelCompleteController : MonoBehaviour
             Debug.Log("Level Completed");
             LevelManager.Instance.SetCurrentLevelCompleted();
             LevelCompletedPanel.SetActive(true);
+            LevelCompletedPanel.gameObject.GetComponentInChildren<LevelCompletedUIController>().PlayConfettiParticles();
         }
+        
     }
   
 }

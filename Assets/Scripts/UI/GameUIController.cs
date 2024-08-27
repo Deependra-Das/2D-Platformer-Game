@@ -68,7 +68,7 @@ public class GameUIController : MonoBehaviour
     public void ActivateGameOverPanel()
     {
         GameOverUIPanel.SetActive(true);
-
+        GameOverUIPanel.gameObject.GetComponentInChildren<GameOverUIController>().PlayExplosionParticles();
     }
 
 }
