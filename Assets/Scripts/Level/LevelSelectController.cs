@@ -24,6 +24,12 @@ public class LevelSelectController : MonoBehaviour
     [SerializeField]
     private Sprite SelectedButtonSprite;
 
+    [SerializeField]
+    private Image levelStatusImage;
+
+    [SerializeField]
+    private Sprite[] statusImageSpriteList;
+
     void Start()
     {
         closeButton.onClick.AddListener(onClickCloseButton);
@@ -41,6 +47,15 @@ public class LevelSelectController : MonoBehaviour
         else
         {
             startLevelButton.interactable = true;
+        }
+
+        if (levelStatusImage.sprite == null)
+        {
+            levelStatusImage.enabled = false;
+        }
+        else
+        {
+            levelStatusImage.enabled = true;
         }
     }
 
@@ -86,7 +101,7 @@ public class LevelSelectController : MonoBehaviour
             }
         }
         AudioManager.Instance.PlaySFX(AudioTypeList.buttonOptionClick);
-
+        setLevelStatusImage();
     }
 
     private void setAllButtonToDefaultState()
@@ -96,4 +111,20 @@ public class LevelSelectController : MonoBehaviour
             levelButton.GetComponent<Image>().sprite = DefaultButtonSprite;
         }
     }
+
+    public void setLevelStatusImage()
+    {
+        LevelStatus levelStatus = LevelManager.Instance.GetLevelStatus(selectedLevelName);
+
+        if (levelStatus == LevelStatus.LOCKED)
+        {
+            levelStatusImage.sprite = statusImageSpriteList[0];
+        }
+        else
+        {
+            levelStatusImage.sprite = statusImageSpriteList[1];
+        }
+
+    }
+
 }
