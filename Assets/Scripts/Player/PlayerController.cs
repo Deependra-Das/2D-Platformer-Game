@@ -166,6 +166,7 @@ public class PlayerController : MonoBehaviour
  
         gameUIControllerObject.ActivateGameOverPanel();
         //playerRigidbody2d.constraints = RigidbodyConstraints2D.FreezePosition;
+
     }
 
     public int getPlayerLives()

@@ -11,7 +11,8 @@ public class LevelCompleteController : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
             AudioManager.Instance.PlaySFX(AudioTypeList.telportUsed);
-            Debug.Log("Level Completed");
+            other.gameObject.GetComponent<PlayerController>().enabled = false;
+            other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
             LevelManager.Instance.SetCurrentLevelCompleted();
             LevelCompletedPanel.SetActive(true);
             LevelCompletedPanel.gameObject.GetComponentInChildren<LevelCompletedUIController>().PlayConfettiParticles();
