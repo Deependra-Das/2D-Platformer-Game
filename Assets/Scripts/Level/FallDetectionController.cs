@@ -11,6 +11,7 @@ public class FallDetectionController : MonoBehaviour
 
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
+            AudioManager.Instance.PlayPlayerDeathAudio();
             Debug.Log("Player Fell Down");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

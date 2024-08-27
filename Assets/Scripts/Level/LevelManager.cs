@@ -39,6 +39,10 @@ public class LevelManager : MonoBehaviour
             SetLevelStatus(LevelsList[0], LevelStatus.UNLOCKED);
         }
 
+        //for(int i=1; i<LevelsList.Length; i++)
+        //{
+        //    SetLevelStatus(LevelsList[i], LevelStatus.LOCKED);
+        //}
     }
 
     public void SetCurrentLevelCompleted()

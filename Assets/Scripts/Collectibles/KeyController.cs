@@ -19,6 +19,7 @@ public class KeyController : MonoBehaviour
         {
             PlayerController playerControllerObject = other.gameObject.GetComponent<PlayerController>();
             keyCollectibleAnimator.SetBool("KeyCollected", true);
+            AudioManager.Instance.PlaySFX(AudioTypeList.keyPickUp);
             playerControllerObject.KeyPickedUp();
 
             Destroy(gameObject);

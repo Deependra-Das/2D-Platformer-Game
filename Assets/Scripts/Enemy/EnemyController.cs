@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private GameObject groundDetector;
+    [SerializeField] private GameObject playerDetector;
     [SerializeField] private float rayDistance;
     [SerializeField] private int directionChanger;
 
@@ -28,12 +29,12 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         patrolEnemy();
+        AttackPlayer();
     }
 
     private void patrolEnemy()
     {
         enemyAnimator.SetBool("IsPatrol", true);
-
         transform.Translate(directionChanger * Vector2.right * moveSpeed * Time.deltaTime);
 
         RaycastHit2D hit = Physics2D.Raycast(groundDetector.transform.position, Vector2.down, rayDistance);
@@ -44,12 +45,23 @@ public class EnemyController : MonoBehaviour
             directionChanger *= -1;
         }
     }
+    private void AttackPlayer()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(playerDetector.transform.position, Vector2.right, rayDistance);
+
+        if(hit)
+        {
+               enemyAnimator.SetTrigger("Attack");
+        }
+
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
             PlayerController playerObject = other.gameObject.GetComponent<PlayerController>();
+        
             playerObject.DecreaseHealth(1);
         }
     }
@@ -59,6 +71,16 @@ public class EnemyController : MonoBehaviour
         Vector3 scaleVector = transform.localScale;
         scaleVector.x *= -1;
         transform.localScale = scaleVector;
+    }
+
+    public void PlayEnemyFootestepAudio()
+    {
+        AudioManager.Instance.PlayEnemyFootestepAudio();
+    }
+
+    public void PlayEnemyAttackAudio()
+    {
+        AudioManager.Instance.PlayEnemyAttackAudio();
     }
 
 }

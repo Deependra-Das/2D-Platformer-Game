@@ -17,6 +17,7 @@ public class LobbyUIController : MonoBehaviour
 
     void Start()
     {
+        AudioManager.Instance.PlayBGM(AudioTypeList.backgroundMusic);
         playButton.onClick.AddListener(StartGameplay);
         QuitButton.onClick.AddListener(QuitGame);
         LevelSelectionPanel = FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None).Where(sr => !sr.gameObject.activeInHierarchy && sr.transform.name=="LevelSelectorPanel").ToArray().DefaultIfEmpty().ElementAt(0);
@@ -24,11 +25,14 @@ public class LobbyUIController : MonoBehaviour
 
     public void StartGameplay()
     {
+        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+
         LevelSelectionPanel.SetActive(true);
     }
 
     public void QuitGame()
     {
-       Application.Quit();
+        AudioManager.Instance.PlaySFX(AudioTypeList.buttonMenuClick);
+        Application.Quit();
     }
 }
