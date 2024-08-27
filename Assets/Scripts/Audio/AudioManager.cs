@@ -28,6 +28,29 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void MuteAudioSource(AudioSourceList sourceName, bool value)
+    {
+        switch(sourceName)
+        {
+            case AudioSourceList.audioSourcePlayer:
+                audioSourcePlayer.mute = value;
+            break;
+
+            case AudioSourceList.audioSourceEnemy:
+                audioSourceEnemy.mute = value;
+                break;
+
+            case AudioSourceList.audioSourceSFX:
+                audioSourceSFX.mute = value;
+                break;
+
+            case AudioSourceList.audioSourceBGM:
+                audioSourceBGM.mute = value;
+                break;
+
+        }
+    }
+
     public void PlaySFX(AudioTypeList audio)
     {
         AudioClip clip = GetAudioClip(audio);
@@ -135,6 +158,7 @@ public enum AudioTypeList
     playerDeath1,
     playerDeath2,
     telportUsed,
+    MusicDeathSting,
 }
 
 [Serializable]
@@ -143,4 +167,13 @@ public class AudioType
     public AudioTypeList audioType;
     public AudioClip audioClip;
 }
+
+public enum AudioSourceList
+{
+    audioSourceSFX,
+    audioSourceBGM,
+    audioSourcePlayer,
+    audioSourceEnemy,
+}
+
 

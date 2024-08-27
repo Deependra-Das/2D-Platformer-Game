@@ -1776,6 +1776,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 6c438cd8f403270478a157682bf24456, type: 3}
   - audioType: 24
     audioClip: {fileID: 8300000, guid: 0cce91cb3c5bf814e805233571eab8ea, type: 3}
+  - audioType: 25
+    audioClip: {fileID: 8300000, guid: 31b2284e8ab3f244182080ca7da474b7, type: 3}
 --- !u!1001 &1087274576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3380,7 +3382,7 @@ PrefabInstance:
     - target: {fileID: 7190458224757804002, guid: 526dac5874c1bb943a775a27db3b4dba,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 526dac5874c1bb943a775a27db3b4dba, type: 3}

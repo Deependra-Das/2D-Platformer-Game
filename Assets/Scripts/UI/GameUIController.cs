@@ -29,7 +29,10 @@ public class GameUIController : MonoBehaviour
         }
 
         RefreshUI();
-
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourcePlayer, false);
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceEnemy, false);
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceSFX, false);
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceBGM, false);
         AudioManager.Instance.PlayBGM(AudioTypeList.backgroundMusic);
     }
 
@@ -69,6 +72,10 @@ public class GameUIController : MonoBehaviour
     {
         GameOverUIPanel.SetActive(true);
         GameOverUIPanel.gameObject.GetComponentInChildren<GameOverUIController>().PlayExplosionParticles();
+        AudioManager.Instance.PlayBGM(AudioTypeList.MusicDeathSting);
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourcePlayer, true);
+        AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceEnemy, true);
+
     }
 
 }
