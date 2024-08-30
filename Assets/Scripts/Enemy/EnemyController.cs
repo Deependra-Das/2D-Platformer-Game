@@ -21,7 +21,10 @@ public class EnemyController : MonoBehaviour
     private GameObject playerDetector;
 
     [SerializeField] 
-    private float rayDistance;
+    private float rayDistanceGroundCheck;
+
+    [SerializeField]
+    private float rayDistancePlayerCheck;
 
     [SerializeField] 
     private int directionChanger;
@@ -39,7 +42,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         patrolEnemy();
-        AttackPlayer();
+        DetectObjects();
     }
 
     private void patrolEnemy()
@@ -47,7 +50,7 @@ public class EnemyController : MonoBehaviour
         enemyAnimator.SetBool("IsPatrol", true);
         transform.Translate(directionChanger * Vector2.right * moveSpeed * Time.deltaTime);
 
-        RaycastHit2D hit = Physics2D.Raycast(groundDetector.transform.position, Vector2.down, rayDistance);
+        RaycastHit2D hit = Physics2D.Raycast(groundDetector.transform.position, Vector2.down, rayDistanceGroundCheck);
 
         if (!hit)
         {
@@ -55,14 +58,31 @@ public class EnemyController : MonoBehaviour
             directionChanger *= -1;
         }
     }
-    private void AttackPlayer()
+    private void DetectObjects()
     {
-        RaycastHit2D hit = Physics2D.Raycast(playerDetector.transform.position, Vector2.right, rayDistance);
+        RaycastHit2D hit = Physics2D.Raycast(playerDetector.transform.position, Vector2.right, rayDistancePlayerCheck);
 
         if(hit)
         {
-               enemyAnimator.SetTrigger("Attack");
+            GameObject hitObject=hit.transform.gameObject;
+
+            if(hitObject.name=="Player")
+            {
+                enemyAnimator.SetTrigger("Attack");
+            }
+            else if(hitObject.tag=="Platform")
+            {
+                FlipSprite();
+                directionChanger *= -1;
+            }
+              
         }
+
+    }
+
+    private void AttackPlayer()
+    {
+       enemyAnimator.SetTrigger("Attack");
 
     }
 

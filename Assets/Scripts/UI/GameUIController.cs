@@ -15,7 +15,7 @@ public class GameUIController : MonoBehaviour
     [SerializeField]
     private PlayerController playerObject;
 
-    public Image[] healthImageList;
+    public CanvasRenderer[] healthImageList;
 
     [SerializeField] 
     private GameObject GameOverUIPanel;
@@ -24,9 +24,9 @@ public class GameUIController : MonoBehaviour
     {
         GameOverUIPanel.SetActive(false);
 
-        foreach (Image img in healthImageList)
+        foreach (CanvasRenderer img in healthImageList)
         {
-            img.GetComponentInChildren<CanvasRenderer>().gameObject.SetActive(true);
+            img.gameObject.SetActive(true);
         }
 
         RefreshUI();
@@ -58,14 +58,14 @@ public class GameUIController : MonoBehaviour
     {
         int currentPlayerLives = playerObject.getPlayerLives();
 
-        foreach (Image img in healthImageList)
+        foreach (CanvasRenderer img in healthImageList)
         {
-            img.GetComponentInChildren<CanvasRenderer>().gameObject.SetActive(false);
+            img.gameObject.SetActive(false);
         }
 
         for (int i = 0; i < currentPlayerLives; i++)
         {
-            healthImageList[i].GetComponentInChildren<CanvasRenderer>().gameObject.SetActive(true);
+            healthImageList[i].gameObject.SetActive(true);
         }
     }
 

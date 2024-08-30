@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using System;
 
 public class LevelSelectController : MonoBehaviour
 {
@@ -28,8 +29,7 @@ public class LevelSelectController : MonoBehaviour
     [SerializeField]
     private Sprite[] statusImageSpriteList;
 
-    [SerializeField]
-    private LevelButton[] LevelButtonList;
+    public LevelButtonItem[] LevelButtonList;
 
 
     void Start()
@@ -93,7 +93,7 @@ public class LevelSelectController : MonoBehaviour
     {
         selectedLevelName = levelName;
         setAllButtonToDefaultState();
-        foreach (LevelButton levelButton in LevelButtonList)
+        foreach (LevelButtonItem levelButton in LevelButtonList)
         {
             if (levelButton.levelName == selectedLevelName)
             {
@@ -106,7 +106,7 @@ public class LevelSelectController : MonoBehaviour
 
     private void setAllButtonToDefaultState()
     {
-        foreach (LevelButton levelButton in LevelButtonList)
+        foreach (LevelButtonItem levelButton in LevelButtonList)
         {
             levelButton.levelButtonImage.sprite = DefaultButtonSprite;
         }
@@ -129,7 +129,8 @@ public class LevelSelectController : MonoBehaviour
 
 }
 
-public class LevelButton
+[Serializable]
+public class LevelButtonItem
 {
     public string levelName;
     public Button levelButton;
