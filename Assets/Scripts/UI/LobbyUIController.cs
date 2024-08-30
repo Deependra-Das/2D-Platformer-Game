@@ -13,6 +13,7 @@ public class LobbyUIController : MonoBehaviour
     [SerializeField]
     private Button QuitButton;
 
+    [SerializeField]
     private GameObject LevelSelectionPanel;
 
     void Start()
@@ -20,7 +21,7 @@ public class LobbyUIController : MonoBehaviour
         AudioManager.Instance.PlayBGM(AudioTypeList.backgroundMusic);
         playButton.onClick.AddListener(StartGameplay);
         QuitButton.onClick.AddListener(QuitGame);
-        LevelSelectionPanel = FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None).Where(sr => !sr.gameObject.activeInHierarchy && sr.transform.name=="LevelSelectorPanel").ToArray().DefaultIfEmpty().ElementAt(0);
+
     }
 
     public void StartGameplay()

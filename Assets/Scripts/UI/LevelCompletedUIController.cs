@@ -20,6 +20,12 @@ public class LevelCompletedUIController : MonoBehaviour
         PlayNextLevelButton.onClick.AddListener(PlayNextLevel);
         BackToMenuButton.onClick.AddListener(BackToMenu);
     }
+
+    private void OnEnable()
+    {
+        PlayConfettiParticles();
+    }
+
     public void PlayNextLevel()
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;

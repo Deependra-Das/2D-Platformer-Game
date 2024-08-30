@@ -90,7 +90,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayFootstepsAudio()
     {
-        AudioClip clip = GetAudioClip((AudioTypeList)UnityEngine.Random.Range(5,9));
+        AudioClip clip = GetAudioClip((AudioTypeList)UnityEngine.Random.Range((int)AudioTypeList.playerFootstep1, ((int)AudioTypeList.playerFootstep8) + 1));
         audioSourcePlayer.clip = clip;
         audioSourcePlayer.Play();
     }
@@ -111,21 +111,21 @@ public class AudioManager : MonoBehaviour
 
     public void PlayEnemyFootestepAudio()
     {
-        AudioClip clip = GetAudioClip((AudioTypeList)UnityEngine.Random.Range(15, 17));
+        AudioClip clip = GetAudioClip((AudioTypeList)UnityEngine.Random.Range((int)AudioTypeList.enemyFootstep1, ((int)AudioTypeList.enemyFootstep2) +1));
         audioSourceEnemy.clip = clip;
         audioSourceEnemy.Play();
     }
 
     public void PlayEnemyAttackAudio()
     {
-        AudioClip clip = GetAudioClip((AudioTypeList)UnityEngine.Random.Range(17, 21));
+        AudioClip clip = GetAudioClip((AudioTypeList)UnityEngine.Random.Range((int)AudioTypeList.enemyAttack1, ((int)AudioTypeList.enemyAttack4) + 1));
         audioSourceEnemy.clip = clip;
         audioSourceEnemy.Play();
         Debug.Log(clip.name);
     }
     public void PlayPlayerDeathAudio()
     {
-        AudioClip clip = GetAudioClip((AudioTypeList)UnityEngine.Random.Range(21, 23));
+        AudioClip clip = GetAudioClip((AudioTypeList)UnityEngine.Random.Range((int)AudioTypeList.playerDeath1, ((int)AudioTypeList.playerDeath2) + 1));
         audioSourceEnemy.clip = clip;
         audioSourceEnemy.Play();
         Debug.Log(clip.name);

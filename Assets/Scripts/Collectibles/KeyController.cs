@@ -5,19 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class KeyController : MonoBehaviour
 {
+    [SerializeField]
     private Animator keyCollectibleAnimator;
-
-    private void Start()
-    {
-        keyCollectibleAnimator = GetComponent<Animator>();
- 
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<PlayerController>() != null)
+        PlayerController playerControllerObject = other.gameObject.GetComponent<PlayerController>();
+
+        if (playerControllerObject != null)
         {
-            PlayerController playerControllerObject = other.gameObject.GetComponent<PlayerController>();
             keyCollectibleAnimator.SetBool("KeyCollected", true);
             AudioManager.Instance.PlaySFX(AudioTypeList.keyPickUp);
             playerControllerObject.KeyPickedUp();

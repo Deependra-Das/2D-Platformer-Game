@@ -5,20 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] 
     private Rigidbody2D enemyRigidbody2d;
+
+    [SerializeField] 
     private Animator enemyAnimator;
 
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private GameObject groundDetector;
-    [SerializeField] private GameObject playerDetector;
-    [SerializeField] private float rayDistance;
-    [SerializeField] private int directionChanger;
+    [SerializeField] 
+    private float moveSpeed;
+
+    [SerializeField] 
+    private GameObject groundDetector;
+
+    [SerializeField] 
+    private GameObject playerDetector;
+
+    [SerializeField] 
+    private float rayDistanceGroundCheck;
+
+    [SerializeField]
+    private float rayDistancePlayerCheck;
+
+    [SerializeField] 
+    private int directionChanger;
 
 
     private void Start()
     {
-        enemyRigidbody2d = GetComponent<Rigidbody2D>();
-        enemyAnimator = GetComponent<Animator>();
         if(directionChanger==-1)
         {
             FlipSprite();
@@ -29,7 +42,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         patrolEnemy();
-        AttackPlayer();
+        DetectObjects();
     }
 
     private void patrolEnemy()
@@ -37,7 +50,7 @@ public class EnemyController : MonoBehaviour
         enemyAnimator.SetBool("IsPatrol", true);
         transform.Translate(directionChanger * Vector2.right * moveSpeed * Time.deltaTime);
 
-        RaycastHit2D hit = Physics2D.Raycast(groundDetector.transform.position, Vector2.down, rayDistance);
+        RaycastHit2D hit = Physics2D.Raycast(groundDetector.transform.position, Vector2.down, rayDistanceGroundCheck);
 
         if (!hit)
         {
@@ -45,23 +58,40 @@ public class EnemyController : MonoBehaviour
             directionChanger *= -1;
         }
     }
-    private void AttackPlayer()
+    private void DetectObjects()
     {
-        RaycastHit2D hit = Physics2D.Raycast(playerDetector.transform.position, Vector2.right, rayDistance);
+        RaycastHit2D hit = Physics2D.Raycast(playerDetector.transform.position, Vector2.right, rayDistancePlayerCheck);
 
         if(hit)
         {
-               enemyAnimator.SetTrigger("Attack");
+            GameObject hitObject=hit.transform.gameObject;
+
+            if(hitObject.name=="Player")
+            {
+                enemyAnimator.SetTrigger("Attack");
+            }
+            else if(hitObject.tag=="Platform")
+            {
+                FlipSprite();
+                directionChanger *= -1;
+            }
+              
         }
+
+    }
+
+    private void AttackPlayer()
+    {
+       enemyAnimator.SetTrigger("Attack");
 
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.GetComponent<PlayerController>() != null)
+        PlayerController playerObject = other.gameObject.GetComponent<PlayerController>();
+
+        if (playerObject != null)
         {
-            PlayerController playerObject = other.gameObject.GetComponent<PlayerController>();
-        
             playerObject.DecreaseHealth(1);
         }
     }

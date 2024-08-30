@@ -5,19 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class LevelCompleteController : MonoBehaviour
 {
-    public GameObject LevelCompletedPanel;
+    [SerializeField]
+    private GameObject LevelCompletedPanel;
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.GetComponent<PlayerController>() != null)
+        PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
+        if (playerController != null)
         {
             AudioManager.Instance.PlaySFX(AudioTypeList.telportUsed);
             AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourcePlayer, true);
             AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceEnemy, true);
-            other.gameObject.GetComponent<PlayerController>().enabled = false;
-            other.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+            playerController.DisablePlayerSprite();
+            playerController.enabled = false;
+
             LevelManager.Instance.SetCurrentLevelCompleted();
             LevelCompletedPanel.SetActive(true);
-            LevelCompletedPanel.gameObject.GetComponentInChildren<LevelCompletedUIController>().PlayConfettiParticles();
         }
         
     }

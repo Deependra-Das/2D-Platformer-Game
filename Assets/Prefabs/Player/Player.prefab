@@ -253,6 +253,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73f587adb1b0184e96edd09e8650b85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 7944542228952076581}
+  playerRigidbody2d: {fileID: 6932732858187791562}
+  playerBoxCollider2d: {fileID: 6932732858187791561}
+  playerSpriteRenderer: {fileID: 6932732858686814097}
   playerHorizontalSpeed: 10
   playerVerticalJumpHeight: 15
   playerLives: 3
+  gameUIControllerObject: {fileID: 0}
