@@ -505,7 +505,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504154508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.87, y: -1.5, z: -1.3686957}
+  m_LocalPosition: {x: 31.87, y: -5, z: -1.3686957}
   m_LocalScale: {x: 58, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -634,6 +634,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 533433782}
     m_Modifications:
+    - target: {fileID: 1955393123054684390, guid: 24f551c81ccc17c4a8f80264e046ab88,
+        type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 6932732858187791560}
     - target: {fileID: 1955393123054684390, guid: 24f551c81ccc17c4a8f80264e046ab88,
         type: 3}
       propertyPath: GameOverUIPanel
@@ -871,6 +876,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &568990535 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1955393123054684390, guid: 24f551c81ccc17c4a8f80264e046ab88,
+    type: 3}
+  m_PrefabInstance: {fileID: 568990530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4b92b80990f164bbe5380ec9fea62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &620189005
@@ -5007,9 +5024,25 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 887410889, guid: 10b8a74b9caa7bc45a3ac3ee10109075, type: 3}
+      propertyPath: playerAnimator
+      value: 
+      objectReference: {fileID: 6932732858187791563}
+    - target: {fileID: 887410889, guid: 10b8a74b9caa7bc45a3ac3ee10109075, type: 3}
+      propertyPath: playerRigidbody2d
+      value: 
+      objectReference: {fileID: 6932732858187791562}
+    - target: {fileID: 887410889, guid: 10b8a74b9caa7bc45a3ac3ee10109075, type: 3}
+      propertyPath: playerBoxCollider2d
+      value: 
+      objectReference: {fileID: 6932732858187791561}
+    - target: {fileID: 887410889, guid: 10b8a74b9caa7bc45a3ac3ee10109075, type: 3}
       propertyPath: playerHorizontalSpeed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 887410889, guid: 10b8a74b9caa7bc45a3ac3ee10109075, type: 3}
+      propertyPath: gameUIControllerObject
+      value: 
+      objectReference: {fileID: 568990535}
     - target: {fileID: 887410889, guid: 10b8a74b9caa7bc45a3ac3ee10109075, type: 3}
       propertyPath: playerVerticalJumpHeight
       value: 8
@@ -5106,3 +5139,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10b8a74b9caa7bc45a3ac3ee10109075, type: 3}
+--- !u!114 &6932732858187791560 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 887410889, guid: 10b8a74b9caa7bc45a3ac3ee10109075,
+    type: 3}
+  m_PrefabInstance: {fileID: 6932732858187791559}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d73f587adb1b0184e96edd09e8650b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &6932732858187791561 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6932732858187791561, guid: 10b8a74b9caa7bc45a3ac3ee10109075,
+    type: 3}
+  m_PrefabInstance: {fileID: 6932732858187791559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &6932732858187791562 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 6932732858187791562, guid: 10b8a74b9caa7bc45a3ac3ee10109075,
+    type: 3}
+  m_PrefabInstance: {fileID: 6932732858187791559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6932732858187791563 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7944542228952076581, guid: 10b8a74b9caa7bc45a3ac3ee10109075,
+    type: 3}
+  m_PrefabInstance: {fileID: 6932732858187791559}
+  m_PrefabAsset: {fileID: 0}

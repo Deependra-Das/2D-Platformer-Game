@@ -271,4 +271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e79b2d3b882bf409bf2bf2edaa036e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 8783175445950402862}
   LevelName: Level1
+  levelSelectObject: {fileID: 0}

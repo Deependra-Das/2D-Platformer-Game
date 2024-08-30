@@ -5,20 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] 
     private Rigidbody2D enemyRigidbody2d;
+
+    [SerializeField] 
     private Animator enemyAnimator;
 
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private GameObject groundDetector;
-    [SerializeField] private GameObject playerDetector;
-    [SerializeField] private float rayDistance;
-    [SerializeField] private int directionChanger;
+    [SerializeField] 
+    private float moveSpeed;
+
+    [SerializeField] 
+    private GameObject groundDetector;
+
+    [SerializeField] 
+    private GameObject playerDetector;
+
+    [SerializeField] 
+    private float rayDistance;
+
+    [SerializeField] 
+    private int directionChanger;
 
 
     private void Start()
     {
-        enemyRigidbody2d = GetComponent<Rigidbody2D>();
-        enemyAnimator = GetComponent<Animator>();
         if(directionChanger==-1)
         {
             FlipSprite();
@@ -58,10 +68,10 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.GetComponent<PlayerController>() != null)
+        PlayerController playerObject = other.gameObject.GetComponent<PlayerController>();
+
+        if (playerObject != null)
         {
-            PlayerController playerObject = other.gameObject.GetComponent<PlayerController>();
-        
             playerObject.DecreaseHealth(1);
         }
     }

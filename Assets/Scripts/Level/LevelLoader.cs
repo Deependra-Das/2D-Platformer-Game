@@ -6,19 +6,18 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class LevelLoader : MonoBehaviour
 {
+    [SerializeField]
     private Button button;
 
     [SerializeField]
     private string LevelName;
 
-    LevelSelectController levelSelectObject;
+    [SerializeField]
+    private LevelSelectController levelSelectObject;
 
     void Start()
     {
-        button = GetComponent<Button>();
         button.onClick.AddListener(onClickLevelButton);
-
-        levelSelectObject =  GameObject.Find("LevelSelectorPanel").GetComponent<LevelSelectController>();
     }
 
     private void onClickLevelButton()

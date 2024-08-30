@@ -21,6 +21,11 @@ public class GameOverUIController : MonoBehaviour
         BackToMenuButton.onClick.AddListener(BackToMenu);
     }
 
+    private void OnEnable()
+    {
+        PlayExplosionParticles();
+    }
+
     public void RestartLevel()
     {
         AudioManager.Instance.PlaySFX(AudioTypeList.buttonStartClick);

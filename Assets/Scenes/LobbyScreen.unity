@@ -846,6 +846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playButton: {fileID: 855836093}
   QuitButton: {fileID: 1935448854}
+  LevelSelectionPanel: {fileID: 1994344592}
 --- !u!1 &458512771
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,6 +992,11 @@ PrefabInstance:
       propertyPath: LevelName
       value: Level5
       objectReference: {fileID: 0}
+    - target: {fileID: 8783175445950402859, guid: 7520e46528ee21641963bcb58fc651cb,
+        type: 3}
+      propertyPath: levelSelectObject
+      value: 
+      objectReference: {fileID: 1994344596}
     - target: {fileID: 8783175445950402860, guid: 7520e46528ee21641963bcb58fc651cb,
         type: 3}
       propertyPath: m_Name
@@ -1106,6 +1112,12 @@ PrefabInstance:
 --- !u!224 &464532449 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8783175445950402863, guid: 7520e46528ee21641963bcb58fc651cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 464532448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &464532450 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8783175445950402860, guid: 7520e46528ee21641963bcb58fc651cb,
     type: 3}
   m_PrefabInstance: {fileID: 464532448}
   m_PrefabAsset: {fileID: 0}
@@ -1279,6 +1291,11 @@ PrefabInstance:
       propertyPath: LevelName
       value: Level3
       objectReference: {fileID: 0}
+    - target: {fileID: 8783175445950402859, guid: 7520e46528ee21641963bcb58fc651cb,
+        type: 3}
+      propertyPath: levelSelectObject
+      value: 
+      objectReference: {fileID: 1994344596}
     - target: {fileID: 8783175445950402860, guid: 7520e46528ee21641963bcb58fc651cb,
         type: 3}
       propertyPath: m_Name
@@ -1399,6 +1416,12 @@ PrefabInstance:
 --- !u!224 &783284072 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8783175445950402863, guid: 7520e46528ee21641963bcb58fc651cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 783284071}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &783284073 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8783175445950402860, guid: 7520e46528ee21641963bcb58fc651cb,
     type: 3}
   m_PrefabInstance: {fileID: 783284071}
   m_PrefabAsset: {fileID: 0}
@@ -2317,6 +2340,11 @@ PrefabInstance:
       propertyPath: LevelName
       value: Level2
       objectReference: {fileID: 0}
+    - target: {fileID: 8783175445950402859, guid: 7520e46528ee21641963bcb58fc651cb,
+        type: 3}
+      propertyPath: levelSelectObject
+      value: 
+      objectReference: {fileID: 1994344596}
     - target: {fileID: 8783175445950402860, guid: 7520e46528ee21641963bcb58fc651cb,
         type: 3}
       propertyPath: m_Name
@@ -2432,6 +2460,12 @@ PrefabInstance:
 --- !u!224 &1320023497 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8783175445950402863, guid: 7520e46528ee21641963bcb58fc651cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1320023496}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1320023498 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8783175445950402860, guid: 7520e46528ee21641963bcb58fc651cb,
     type: 3}
   m_PrefabInstance: {fileID: 1320023496}
   m_PrefabAsset: {fileID: 0}
@@ -2596,6 +2630,11 @@ PrefabInstance:
       propertyPath: LevelName
       value: Level4
       objectReference: {fileID: 0}
+    - target: {fileID: 8783175445950402859, guid: 7520e46528ee21641963bcb58fc651cb,
+        type: 3}
+      propertyPath: levelSelectObject
+      value: 
+      objectReference: {fileID: 1994344596}
     - target: {fileID: 8783175445950402860, guid: 7520e46528ee21641963bcb58fc651cb,
         type: 3}
       propertyPath: m_Name
@@ -2711,6 +2750,12 @@ PrefabInstance:
 --- !u!224 &1458940475 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8783175445950402863, guid: 7520e46528ee21641963bcb58fc651cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1458940474}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1458940476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8783175445950402860, guid: 7520e46528ee21641963bcb58fc651cb,
     type: 3}
   m_PrefabInstance: {fileID: 1458940474}
   m_PrefabAsset: {fileID: 0}
@@ -3378,6 +3423,12 @@ MonoBehaviour:
   statusImageSpriteList:
   - {fileID: 21300000, guid: 6b8bc627f7442b648bb6fe9c9c014a31, type: 3}
   - {fileID: 21300000, guid: 5cb121021a370c444884600688772e8d, type: 3}
+  LevelButtonList:
+  - {fileID: 8783175444343777238}
+  - {fileID: 1320023498}
+  - {fileID: 783284073}
+  - {fileID: 1458940476}
+  - {fileID: 464532450}
 --- !u!1001 &7190458224776937874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3474,6 +3525,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 34032838}
     m_Modifications:
+    - target: {fileID: 8783175445950402859, guid: 7520e46528ee21641963bcb58fc651cb,
+        type: 3}
+      propertyPath: levelSelectObject
+      value: 
+      objectReference: {fileID: 1994344596}
     - target: {fileID: 8783175445950402860, guid: 7520e46528ee21641963bcb58fc651cb,
         type: 3}
       propertyPath: m_Name
@@ -3586,3 +3642,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7520e46528ee21641963bcb58fc651cb, type: 3}
+--- !u!1 &8783175444343777238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8783175445950402860, guid: 7520e46528ee21641963bcb58fc651cb,
+    type: 3}
+  m_PrefabInstance: {fileID: 8783175444343777237}
+  m_PrefabAsset: {fileID: 0}

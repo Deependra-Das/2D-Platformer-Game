@@ -5,9 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
     private Animator playerAnimator;
+
+    [SerializeField]
     private Rigidbody2D playerRigidbody2d;
+
+    [SerializeField]
     private BoxCollider2D playerBoxCollider2d;
+
+    [SerializeField]
+    private SpriteRenderer playerSpriteRenderer;
 
     [SerializeField] 
     private float playerHorizontalSpeed;
@@ -24,18 +32,16 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isDead = false;
     private Camera mainCamera;
-    GameUIController gameUIControllerObject;
+
+    [SerializeField]
+    private GameUIController gameUIControllerObject;
 
     private void Start()
     {
-        playerRigidbody2d=GetComponent<Rigidbody2D>();
-        playerAnimator = GetComponent<Animator>();
-        playerBoxCollider2d = GetComponent<BoxCollider2D>();
         mainCamera = Camera.main;
 
         boxColInitSize = playerBoxCollider2d.size;
         boxColInitOffset = playerBoxCollider2d.offset;
-        gameUIControllerObject = GameObject.Find("GameUIContainer").GetComponent<GameUIController>();
     }
 
     public void Update()
@@ -196,6 +202,11 @@ public class PlayerController : MonoBehaviour
     public void PlayPlayerDeathAudio()
     {
         AudioManager.Instance.PlayPlayerDeathAudio();
+    }
+
+    public void DisablePlayerSprite()
+    {
+       playerSpriteRenderer.enabled = false;    
     }
 
 }

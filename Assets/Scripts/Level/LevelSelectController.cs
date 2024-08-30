@@ -16,8 +16,6 @@ public class LevelSelectController : MonoBehaviour
 
     public string selectedLevelName;
 
-    private GameObject[] LevelButtonList;
-
     [SerializeField]
     private Sprite DefaultButtonSprite;
 
@@ -30,12 +28,14 @@ public class LevelSelectController : MonoBehaviour
     [SerializeField]
     private Sprite[] statusImageSpriteList;
 
+    [SerializeField]
+    private LevelButton[] LevelButtonList;
+
+
     void Start()
     {
         closeButton.onClick.AddListener(onClickCloseButton);
         startLevelButton.onClick.AddListener(onClickStartLevelButton);
-
-        LevelButtonList = FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None).Where(sr => sr.transform.name == "LevelButton").ToArray();
     }
 
     private void Update()
@@ -93,11 +93,11 @@ public class LevelSelectController : MonoBehaviour
     {
         selectedLevelName = levelName;
         setAllButtonToDefaultState();
-        foreach (GameObject levelButton in LevelButtonList)
+        foreach (LevelButton levelButton in LevelButtonList)
         {
-            if (levelButton.GetComponent<LevelLoader>().getLevelName() == selectedLevelName)
+            if (levelButton.levelName == selectedLevelName)
             {
-                levelButton.GetComponent<Image>().sprite = SelectedButtonSprite;
+                levelButton.levelButtonImage.sprite = SelectedButtonSprite;
             }
         }
         AudioManager.Instance.PlaySFX(AudioTypeList.buttonOptionClick);
@@ -106,9 +106,9 @@ public class LevelSelectController : MonoBehaviour
 
     private void setAllButtonToDefaultState()
     {
-        foreach (GameObject levelButton in LevelButtonList)
+        foreach (LevelButton levelButton in LevelButtonList)
         {
-            levelButton.GetComponent<Image>().sprite = DefaultButtonSprite;
+            levelButton.levelButtonImage.sprite = DefaultButtonSprite;
         }
     }
 
@@ -127,4 +127,12 @@ public class LevelSelectController : MonoBehaviour
 
     }
 
+}
+
+public class LevelButton
+{
+    public string levelName;
+    public Button levelButton;
+    public Image levelButtonImage;
+   
 }

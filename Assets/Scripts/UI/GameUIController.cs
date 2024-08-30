@@ -11,6 +11,8 @@ public class GameUIController : MonoBehaviour
     private TextMeshProUGUI scoreText;
 
     private int scoreValue = 0;
+
+    [SerializeField]
     private PlayerController playerObject;
 
     public Image[] healthImageList;
@@ -20,7 +22,6 @@ public class GameUIController : MonoBehaviour
 
     void Start()
     {
-        playerObject = GameObject.Find("Player").GetComponent<PlayerController>();
         GameOverUIPanel.SetActive(false);
 
         foreach (Image img in healthImageList)
@@ -71,7 +72,6 @@ public class GameUIController : MonoBehaviour
     public void ActivateGameOverPanel()
     {
         GameOverUIPanel.SetActive(true);
-        GameOverUIPanel.gameObject.GetComponentInChildren<GameOverUIController>().PlayExplosionParticles();
         AudioManager.Instance.PlayBGM(AudioTypeList.MusicDeathSting);
         AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourcePlayer, true);
         AudioManager.Instance.MuteAudioSource(AudioSourceList.audioSourceEnemy, true);
